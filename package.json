@@ -1,0 +1,32 @@
+{
+  "name": "imatroll",
+  "version": "1.0.1",
+  "description": "ff20noobs frontend",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luisyan/imatroll.git"
+  },
+  "author": "Yan Liu & Yufeng Ding",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.11",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.1.0",
+    "gulp-connect-proxy": "^0.3.1",
+    "gulp-if": "^2.0.1",
+    "gulp-jsonminify": "^1.0.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-uglify": "^1.5.4",
+    "gulp-util": "^3.0.7"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.1.0",
+    "sweetalert2": "^4.2.6"
+  }
+}

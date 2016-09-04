@@ -1,0 +1,14 @@
+# compiled output
+/tmp
+/builds
+/dist
+
+# dependencies
+/node_modules
+/bower_components
+
+# misc
+.idea/*
+.DS_Store
+.vscode
+/connect.lock
