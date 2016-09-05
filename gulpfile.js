@@ -5,7 +5,8 @@ var gulp = require("gulp"),
     minifyHTML = require('gulp-minify-html'),
     jsonminify = require('gulp-jsonminify'),
     concat = require('gulp-concat'),
-    del = require('del');
+    del = require('del'),
+    proxy = require('http-proxy-middleware');
 
 var env,
     jsSources,
@@ -63,6 +64,12 @@ gulp.task('html', function() {
         .pipe(connect.reload())
 });
 
+gulp.task('index', function() {
+    return gulp.src('app/index.html')
+        .pipe(gulp.dest(outputDir))
+        .pipe(connect.reload());
+});
+
 gulp.task('js', function() {
     return gulp.src(jsSources)
         .pipe(concat('imatroll.js'))
@@ -106,15 +113,24 @@ gulp.task('img', function() {
 });
 
 gulp.task('connect', function() {
+    var cors = require('cors');
     connect.server({
         port: 26000,
         root: 'builds/development',
-        livereload: true
+        livereload: true,
+        middleware: function(connect, opt) {
+            return [
+                proxy('/api', {
+                    target: 'http://www.nevergg.com',
+                    changeOrigin:true
+                })
+            ]
+        }
     });
 });
 
 gulp.task('vendor', ['vendorjs', 'fonts', 'vendorcss', 'img']);
-gulp.task('imatroll', ['html', 'js', 'css']);
+gulp.task('imatroll', ['index', 'html', 'js', 'css']);
 
 gulp.task('watch', function() {
     gulp.watch(jsSources, ['js']);
