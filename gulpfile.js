@@ -9,6 +9,7 @@ var gulp = require("gulp"),
     proxy = require('http-proxy-middleware');
 
 var env,
+    indexFile,
     jsSources,
     cssSources,
     htmlSources,
@@ -29,14 +30,15 @@ if (env==='development') {
 jsSources = [
     'app/scripts/main.js',
     'app/scripts/services/*.js',
+    'app/scripts/controllers/*.js',
     'app/scripts/directives/*.js',
-    'app/scripts/controllers/*.js'
 ];
 
 cssSources = [
     'app/styles/css/*.css'
 ];
 
+indexFile = ['app/index.html'];
 htmlSources = ['app/html/*.html'];
 imgSources = ['app/img/**'];
 
@@ -131,6 +133,7 @@ gulp.task('connect', function() {
 
 gulp.task('vendor', ['vendorjs', 'fonts', 'vendorcss', 'img']);
 gulp.task('imatroll', ['index', 'html', 'js', 'css']);
+
 
 gulp.task('watch', function() {
     gulp.watch(jsSources, ['js']);

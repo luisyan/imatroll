@@ -1,3 +1,81 @@
-.welcome {
-  color: red;
+html, body {
+  margin: 0;
+}
+.large{
+  max-width: 60px;
+  float:left;
+}
+.large img{
+  display:block;
+  width: 100%;
+}
+.small{
+  max-width: 30px;
+  float:left;
+  margin-left: 3px;
+}
+.small img{
+  display:block;
+  width: 100%;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table > tbody > tr > th {
+  text-align: center;
+}
+
+.scoreBoardIcon {
+  margin-top: 10px;
+  margin-right: -5px;
+}
+.imgWrap{
+  display:inline-table;
+}
+
+.inputDiv {
+  left: 38%;
+  top: 40%;
+  position: relative;
+}
+
+.kill {
+  color: limegreen;
+}
+.death {
+  color: orangered;
+}
+.assist {
+  color: darkorange;
+}
+.tierImg {
+  max-height: 50px;
+}
+td.tdTier {
+  text-align: left !important;
+  left: 3%;
+  position: relative;
+}
+.teamBlue {
+  background: rgba(0, 191, 255, 0.12);
+}
+.teamPurple {
+  background: rgba(132, 30, 255, 0.1);
+}
+.championBan {
+  height: 10vh;
+  background: white;
+  text-align: center;
+}
+.blueBan {
+  float: left;
+}
+.purpleBan {
+  float: right;
+}
+.bannedImg {
+  margin: 1vh;
 }
