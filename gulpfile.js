@@ -30,8 +30,8 @@ if (env==='development') {
 jsSources = [
     'app/scripts/main.js',
     'app/scripts/services/*.js',
+    'app/scripts/controllers/*.js',
     'app/scripts/directives/*.js',
-    'app/scripts/controllers/*.js'
 ];
 
 cssSources = [
