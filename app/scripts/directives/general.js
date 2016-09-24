@@ -16,9 +16,16 @@ imatrollApp.directive('loadingIcon', function($templateCache) {
     };
 });
 
-imatrollApp.directive('loadTd', function() {
+imatrollApp.directive('loadPlayer', function() {
     return {
-        templateUrl: 'tdTemplate',
+        templateUrl: 'playerTemplate',
+        restrict: 'A',
+    };
+});
+
+imatrollApp.directive('loadBan', function() {
+    return {
+        templateUrl: 'banTemplate',
         restrict: 'A',
     };
 });
