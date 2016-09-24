@@ -19,18 +19,9 @@
 				<th>Mastery</th>
 				<th>Last 10</th>
 			</tr>
-			<tr ng-repeat="player in blue" class="teamBlue" load-td></tr>
-			<tr ng-if="ban" ng-show="loadComplete">
-				<td class="championBan" colspan="9">
-					<div class="blueBan">
-						<img class="large bannedImg" ng-repeat="bannedChampion in ban.blue" ng-src="{{bannedChampion.url}}">
-					</div>
-					<div class="purpleBan">
-						<img class="large bannedImg" ng-repeat="bannedChampion in ban.purple" ng-src="{{bannedChampion.url}}">
-					</div>
-				</td>
-			</tr>
-			<tr ng-repeat="player in purple" class="teamPurple" load-td></tr>
+			<tr ng-repeat="player in blue" class="teamBlue" load-player></tr>
+			<tr ng-if="ban" ng-show="loadComplete" load-ban></tr>
+			<tr ng-repeat="player in purple" class="teamPurple" load-player></tr>
 		</table>
 	</div>
 </div>
