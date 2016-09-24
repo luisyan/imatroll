@@ -19,65 +19,8 @@
 				<th>Mastery</th>
 				<th>Last 10</th>
 			</tr>
-			<tr ng-repeat="player in blue" class="teamBlue">
-				<td>
-					<div class="imgWrap">
-						<div class="large">
-							<img ng-src="{{player.champion.url}}">
-						</div>
-						<div class="small">
-							<img ng-src="{{player.summonerSpell.spell1.url}}">
-							<img ng-src="{{player.summonerSpell.spell2.url}}">
-						</div>
-					</div>
-				</td>
-				<td loading-icon>
-					<div ng-hide="!player.validRankStats || !player.championStats" style="margin-bottom: -10px;">
-						<div style="display: block; padding: 2px">
-							<span class="kill" ng-bind="player.championStats.averageStats.kills"></span>-<span class="death" ng-bind="player.championStats.averageStats.deaths"></span>-<span class="assist" ng-bind="player.championStats.averageStats.assists"></span>
-						</div>
-						<div style="display: block; padding: 2px">
-							<span ng-bind="player.championStats.winningRate"></span>
-							(<span ng-bind="player.championStats.totalSessionsPlayed"></span>)
-						</div>
-						<div style="display: block;margin-top: -10px;padding: 2px">
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/gold.png"><span ng-bind="player.championStats.averageStats.gold"></span>
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"><span ng-bind="player.championStats.averageStats.cs"></span>
-						</div>
-					</div>
-				</td>
-				<td ng-bind="player.summonerName"></td>
-				<td class="tdTier" loading-icon>
-					<img class="tierImg" ng-src="img/tier/{{player.tierFile}}">
-					<span ng-bind="player.tierName"></span>
-				</td>
-				<td loading-icon>
-					<div ng-show="player.validLeagueEntry">
-						<span ng-bind="player.WL"></span> (<span ng-bind="player.seasonNumGames"></span>)
-					</div>
-				</td>
-				<td loading-icon>
-					<div ng-hide="!player.validRankStats">
-						<div style="display: block">
-							<span class="kill" ng-bind="player.seasonKill"></span>-<span class="death" ng-bind="player.seasonDeath"></span>-<span class="assist" ng-bind="player.seasonAssist"></span>
-							<span ng-bind="player.seasonWinRate"></span>
-						</div>
-						<div style="display: block">
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/gold.png"><span ng-bind="player.seasonGold"></span>
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"><span ng-bind="player.seasonCS"></span>
-						</div>
-					</div>
-				</td>
-				<td ng-bind="'+10 dmg'"></td>
-				<td ng-bind="'mastery'"></td>
-				<td loading-icon>
-					<div ng-show="loadComplete">
-						<span ng-bind="player.last10.W+'-'+player.last10.L"></span>
-					</div>
-				</td>
-			</tr>
-
-			<tr ng-if="ban">
+			<tr ng-repeat="player in blue" class="teamBlue" load-td></tr>
+			<tr ng-if="ban" ng-show="loadComplete">
 				<td class="championBan" colspan="9">
 					<div class="blueBan">
 						<img class="large bannedImg" ng-repeat="bannedChampion in ban.blue" ng-src="{{bannedChampion.url}}">
@@ -87,64 +30,7 @@
 					</div>
 				</td>
 			</tr>
-
-			<tr ng-repeat="player in purple" class="teamPurple">
-				<td>
-					<div class="imgWrap">
-						<div class="large">
-							<img ng-src="{{player.champion.url}}">
-						</div>
-						<div class="small">
-							<img ng-src="{{player.summonerSpell.spell1.url}}">
-							<img ng-src="{{player.summonerSpell.spell2.url}}">
-						</div>
-					</div>
-				</td>
-				<td loading-icon>
-					<div ng-hide="!player.validRankStats || !player.championStats" style="margin-bottom: -10px;">
-						<div style="display: block; padding: 2px">
-							<span class="kill" ng-bind="player.championStats.averageStats.kills"></span>-<span class="death" ng-bind="player.championStats.averageStats.deaths"></span>-<span class="assist" ng-bind="player.championStats.averageStats.assists"></span>
-						</div>
-						<div style="display: block; padding: 2px">
-							<span ng-bind="player.championStats.winningRate"></span>
-							(<span ng-bind="player.championStats.totalSessionsPlayed"></span>)
-						</div>
-						<div style="display: block;margin-top: -10px;padding: 2px">
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/gold.png"><span ng-bind="player.championStats.averageStats.gold"></span>
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"><span ng-bind="player.championStats.averageStats.cs"></span>
-						</div>
-					</div>
-				</td>
-				<td ng-bind="player.summonerName"></td>
-				<td class="tdTier" loading-icon>
-					<img class="tierImg" ng-src="img/tier/{{player.tierFile}}">
-					<span ng-bind="player.tierName"></span>
-				</td>
-				<td loading-icon>
-					<div ng-show="loadComplete">
-						<span ng-bind="player.WL"></span> (<span ng-bind="player.seasonNumGames"></span>)
-					</div>
-				</td>
-				<td loading-icon>
-					<div ng-hide="!player.validRankStats">
-						<div style="display: block">
-							<span class="kill" ng-bind="player.seasonKill"></span>-<span class="death" ng-bind="player.seasonDeath"></span>-<span class="assist" ng-bind="player.seasonAssist"></span>
-							<span ng-bind="player.seasonWinRate"></span>
-						</div>
-						<div style="display: block">
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/gold.png"><span ng-bind="player.seasonGold"></span>
-							<img class="scoreBoardIcon" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"><span ng-bind="player.seasonCS"></span>
-						</div>
-					</div>
-				</td>
-				<td ng-bind="'+10 dmg'"></td>
-				<td ng-bind="'mastery'"></td>
-				<td loading-icon>
-					<div ng-show="loadComplete">
-						<span ng-bind="player.last10.W+'-'+player.last10.L"></span>
-					</div>
-				</td>
-			</tr>
+			<tr ng-repeat="player in purple" class="teamPurple" load-td></tr>
 		</table>
 	</div>
 </div>

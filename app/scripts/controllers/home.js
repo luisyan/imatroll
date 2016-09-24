@@ -1,4 +1,13 @@
-imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData) {
+imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $templateCache) {
+    $scope.reset = function () {
+        $scope.loadComplete = false;
+        $scope.blue = null;
+        $scope.purple = null;
+        $scope.blueAndPurple = null;
+        $scope.validLeagueEntry = false;
+        $scope.validRankStats = false;
+    }
+
     $scope.getSummoner = function () {
         requestData.getPlayer($scope.playerName)
             .then(function (response) {
@@ -7,6 +16,7 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData) {
     }
 
     $scope.getCurrentGame = function () {
+        $scope.reset();
         requestData.getCurrentGame($scope.playerName)
             .then(function (response) {
                 if (response.resultCode == 0) {

@@ -1,7 +1,7 @@
 /**
  * Created by Yan Liu on 2016-09-22.
  */
-imatrollApp.directive('loadingIcon', function() {
+imatrollApp.directive('loadingIcon', function($templateCache) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -13,5 +13,12 @@ imatrollApp.directive('loadingIcon', function() {
                 }
             });
         }
+    };
+});
+
+imatrollApp.directive('loadTd', function() {
+    return {
+        templateUrl: 'tdTemplate',
+        restrict: 'A',
     };
 });
