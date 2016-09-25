@@ -79,3 +79,23 @@ td.tdTier {
 .bannedImg {
   margin: 1vh;
 }
+.masteryModal {
+  top:  20%;
+  left: -20%
+}
+.category {
+  text-align: center !important;
+  left: 22% !important;
+}
+
+.masteryTree {
+  left: 4% !important;
+}
+.td-mastery {
+  cursor: pointer;
+}
+.points {
+  margin-top: 12px;
+  margin-right: 5px;
+  font-size: 18px;
+}

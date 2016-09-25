@@ -44,6 +44,32 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
             })
     }
 
+    $scope.calculateMastery = function (mastery) {
+        for (var i in mastery) {
+            var mId = mastery[i].masteryId;
+            var selector = 'div[data-rg-id='+mId+']';
+            var img = $(selector).parent(),
+                pointsDiv = $(selector).find('div.points'),
+                pointsValue = pointsDiv.text();
+            img.addClass('mastery-available');
+            var newValue = pointsValue.replace('0',mastery[i].rank);
+            pointsDiv.text(newValue);
+        }
+        $('div[data-rg-id]').each(function () {
+            var pointsDiv = $(this).find('div.points');
+            if (pointsDiv.text().charAt(0) == '0') pointsDiv.hide();
+        })
+        $('#masteryModal').modal('show');
+        $('#masteryModal').on('hidden.bs.modal', function () {
+            $('div.mastery').removeClass('mastery-available');
+            $('div.points')
+                .show()
+                .each(function () {
+                    $(this).text('0'+$(this).text().substring(1, $(this).text().length));
+                })
+        })
+    }
+
     function getRecent(playerList) {
         var d = $q.defer();
         var blue = playerList.Blue,

@@ -35,7 +35,9 @@ jsSources = [
 ];
 
 cssSources = [
-    'app/styles/css/*.css'
+    'app/styles/css/*.css',
+    // 'http://ddragon.leagueoflegends.com/tool/css/qatoolapp.css',
+    // 'http://ddragon.leagueoflegends.com/tool/css/jquery.jscrollpane.css'
 ];
 
 indexFile = ['app/index.html'];
@@ -123,7 +125,7 @@ gulp.task('connect', function() {
         middleware: function(connect, opt) {
             return [
                 proxy('/api', {
-                    target: 'http://www.nevergg.com',
+                    target: 'http://localhost:16000',
                     changeOrigin:true
                 })
             ]
