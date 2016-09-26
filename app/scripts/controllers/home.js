@@ -83,15 +83,15 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
                 CUNNING = 0,
                 RESOLVE = 0;
             for (var j in participants[i].masteries) {
-                switch (participants[i].mastery[j].masteryId.toString().charAt(1)) {
+                switch (participants[i].masteries[j].masteryId.toString().charAt(1)) {
                     case '1':
-                        FEROCITY += participants[i].mastery[j].rank;
-                        break;
-                    case '2':
-                        CUNNING += participants[i].mastery[j].rank;
+                        FEROCITY += participants[i].masteries[j].rank;
                         break;
                     case '3':
-                        RESOLVE += participants[i].mastery[j].rank;
+                        CUNNING += participants[i].masteries[j].rank;
+                        break;
+                    case '2':
+                        RESOLVE += participants[i].masteries[j].rank;
                         break;
                     default:
                 }
