@@ -48,7 +48,7 @@
 </td>
 <td ng-bind="'+10 dmg'"></td>
 <td>
-	<button class="btn btn-link btn-success" ng-bind="'18/0/12'" ng-click="calculateMastery(player.masteries)"></button>
+	<button class="btn btn-link btn-success" ng-bind="player.mastery_sum.FEROCITY+'/'+player.mastery_sum.CUNNING+'/'+player.mastery_sum.RESOLVE" ng-click="calculateMastery(player.masteries, player.mastery_sum)"></button>
 </td>
 <td loading-icon>
 	<div ng-show="loadComplete">

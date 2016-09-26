@@ -20,10 +20,13 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
         requestData.getCurrentGame($scope.playerName)
             .then(function (response) {
                 if (response.resultCode == 0) {
+                    participants = response.data.participants;
                     $scope.ban = response.data.ban;
                     $scope.blue = response.data.participants.Blue;
                     $scope.purple = response.data.participants.Purple;
                     $scope.blueAndPurple = $scope.blue.concat($scope.purple);
+                    getMastery(response.data.participants.Blue, $scope.blue);
+                    getMastery(response.data.participants.Purple, $scope.purple);
 
                     return $q.all([getLeagueEntry(response.data.participants) ,getRecent(response.data.participants)]);
                 }
@@ -44,7 +47,7 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
             })
     }
 
-    $scope.calculateMastery = function (mastery) {
+    $scope.calculateMastery = function (mastery, masterySum) {
         for (var i in mastery) {
             var mId = mastery[i].masteryId;
             var selector = 'div[data-rg-id='+mId+']';
@@ -55,12 +58,16 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
             var newValue = pointsValue.replace('0',mastery[i].rank);
             pointsDiv.text(newValue);
         }
+        $('#riot-component-101-points').text(masterySum.FEROCITY);
+        $('#riot-component-116-points').text(masterySum.CUNNING);
+        $('#riot-component-131-points').text(masterySum.RESOLVE);
         $('div[data-rg-id]').each(function () {
             var pointsDiv = $(this).find('div.points');
             if (pointsDiv.text().charAt(0) == '0') pointsDiv.hide();
         })
         $('#masteryModal').modal('show');
         $('#masteryModal').on('hidden.bs.modal', function () {
+            $('span.points').text('0');
             $('div.mastery').removeClass('mastery-available');
             $('div.points')
                 .show()
@@ -68,6 +75,33 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
                     $(this).text('0'+$(this).text().substring(1, $(this).text().length));
                 })
         })
+    }
+
+    function getMastery(participants, team) {
+        for (var i in participants) {
+            var FEROCITY = 0,
+                CUNNING = 0,
+                RESOLVE = 0;
+            for (var j in participants[i].masteries) {
+                switch (participants[i].mastery[j].masteryId.toString().charAt(1)) {
+                    case '1':
+                        FEROCITY += participants[i].mastery[j].rank;
+                        break;
+                    case '2':
+                        CUNNING += participants[i].mastery[j].rank;
+                        break;
+                    case '3':
+                        RESOLVE += participants[i].mastery[j].rank;
+                        break;
+                    default:
+                }
+            }
+            team[i].mastery_sum = {
+                FEROCITY: FEROCITY,
+                CUNNING: CUNNING,
+                RESOLVE: RESOLVE
+            };
+        }
     }
 
     function getRecent(playerList) {
@@ -152,4 +186,5 @@ imatrollApp.controller('homeCtrl', function ($q, $scope, $http, requestData, $te
             team[i].tierFile = leagueEntryList[i].leagueEntry ? leagueEntryList[i].leagueEntry.tier+'_'+leagueEntryList[i].leagueEntry.division+'.png' : 'UNRANKED.png'
         }
     }
+
 })
